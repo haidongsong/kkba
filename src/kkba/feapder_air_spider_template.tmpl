@@ -68,6 +68,7 @@ ${params}
         # item_pre = {}
         # yield self.create_item(item_pre)
 
+    @staticmethod
     def create_item(self, item_pre):
         item = make_item(Item, item_pre)
         item.table_name = '${spider_name_l}'
@@ -81,18 +82,18 @@ ${params}
 ${request}
         return request
 
-    def validate(self, request, response):
-        # 这里添加validate函数，就不用在parse里面判断status_code了，no responsel.ok 不会进入parse中，会重试
-        if response.status_code != 200:
-            raise Exception("status code is not 200")  # 重试
-
-        # if "哈哈" not in response.text:
-        #     return False # 抛弃当前请求
+    # def validate(self, request, response):
+        #     # 这里添加validate函数，就不用在parse里面判断status_code了，no responsel.ok 不会进入parse中，会重试
+        #     if response.status_code != 200:
+        #         raise Exception("Status code is not 200")  # 重试
+        #
+        #     # if "哈哈" not in response.text:
+        #     #     return False # 抛弃当前请求
 
     def exception_request(self, request, response):
         # 异常请求处理
         self.failed_num += 1
-        log.error("error request: %s", request)
+        log.error("Error request: %s", request)
         yield request
 
     def failed_request(self, request, response):
@@ -103,11 +104,11 @@ ${request}
 
     def start_callback(self):
         self.start_time = time.time()
-        log.info('spider is begin:')
+        log.info('Spider is begin...')
 
     def end_callback(self):
-        log.info('spider is end')
-        log.info("total time: {}".format(time.time()-self.start_time))
+        log.info('Spider is end...')
+        log.info("Total time: {}".format(time.time()-self.start_time))
         log.info("failed_number:{}, failed_max_retry_num:{}".format(self.failed_num, self.failed_max_retry_num))
 
 

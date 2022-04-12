@@ -28,8 +28,15 @@ kkba [options]
 <br/>
 ```shell
 # 1. Copy curl or url
-# 2. excute commands
+# 2. Excute commands
 kkba -F
+```
+```python
+# use proxy,support 蜻蜓、快代理、阿布云, For detailed usage, you can view the source code
+from kkba.proxy import Proxy
+
+p = Proxy(crawlerType='requests', proxyType='xxx', username='xxx', password='xxx')
+proxies = p.get_proxy()
 ```
 
 ![sample graph](https://everpic.oss-cn-beijing.aliyuncs.com/kkba-s4-ezgif.com-gif-maker.gif "sample graph")

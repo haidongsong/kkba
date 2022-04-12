@@ -278,6 +278,7 @@ def generate_single_scrapy(clip_curl):
     if filename.islower():
         spider_name = key2hump(filename)
     file_str = file_str.replace("${spider_name}", spider_name).replace("${spider_name_l}", filename)
+    filename = filename + '.py'
     return file_str, filename
 
 

@@ -17,7 +17,7 @@ from twisted.web._newclient import ResponseFailed, ResponseNeverReceived
 
 
 class ${spider_name}(scrapy.Spider):
-    name = ${spider_name_l}
+    name = '${spider_name_l}'
 
     def start_requests(self):
 ${params}
@@ -66,8 +66,9 @@ ${params}
             request = failure.request
             self.logger.error('Other Error on %s', request.url)
 
-    def __del__(self):
-        pass
+    # 如果要把爬虫结束数据处理的程序考虑进去，用close()
+    # def __del__(self):
+        # pass
 
 
 def start_spider():
